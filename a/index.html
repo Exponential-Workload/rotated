@@ -4,7 +4,9 @@
     <script defer>
       const q = new URLSearchParams(location.search);
       const v = q.get('b') ?? decodeURIComponent(location.hash.substring(1));
-      if (q.get('js') !== null) eval(v) else document.documentElement.innerHTML=v;
+      const isJs = q.get('js') !== null;
+      if (isJs) {eval(v);}
+      else document.documentElement.innerHTML=v;
     </script>
   </head>
 </html>
