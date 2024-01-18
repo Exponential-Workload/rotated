@@ -2,7 +2,9 @@
 <html>
   <head>
     <script defer>
-      document.documentElement.innerHTML=(new URLSearchParams(location.search)).get('b') ?? decodeURIComponent(location.hash.substring(1))
+      const q = new URLSearchParams(location.search);
+      const v = q.get('b') ?? decodeURIComponent(location.hash.substring(1));
+      if (q.get('js')) eval(v) else document.documentElement.innerHTML=v;
     </script>
   </head>
 </html>
