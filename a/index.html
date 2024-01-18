@@ -2,13 +2,15 @@
 <html>
   <head>
     <script defer>
-      (()=>{
+      (async ()=>{
         const q = new URLSearchParams(location.search);
         const v = q.get('b') ?? decodeURIComponent(location.hash.substring(1));
         const isJs = q.get('js') !== null;
-        if (isJs) {
+        const isJsUrl = q.get('jsurl') !== null;
+        if (isJsUrl)
+  				eval(await fetch(v).then(v=>v.text()))
+        else if (isJs)
   				eval(v)
-        }
         else document.documentElement.innerHTML=v;
       })();
     </script>
